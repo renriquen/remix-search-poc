@@ -1,9 +1,7 @@
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-.yarn/install-state.gz
-/public/
-/build/
-/.cache/
-/.idea/
+node_modules
+
+/.cache
+/build
+/public/build
+.env
+.vercel
