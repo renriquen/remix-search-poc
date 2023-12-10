@@ -1,5 +1,5 @@
-import stylesheet from "~/tailwind.css";
-import type { LinksFunction } from "@remix-run/node";
+import { cssBundleHref } from "@remix-run/css-bundle"
+import type { LinksFunction } from "@remix-run/node"
 import {
   Links,
   LiveReload,
@@ -7,11 +7,16 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
+} from "@remix-run/react"
+
+import { Header } from "@/components/header"
+
+import styles from "./tailwind.css"
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-];
+  { rel: "stylesheet", href: styles },
+  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+]
 
 export default function App() {
   return (
@@ -23,12 +28,13 @@ export default function App() {
         <Links />
         <title>Search POC</title>
       </head>
-      <body>
+      <body className="flex h-full flex-col">
+        <Header />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
-  );
+  )
 }
